@@ -127,7 +127,7 @@ public class MainFragment extends Fragment {
 		// Example: partially typed access, to location field,
 		// name key (location)
 		// - requires user_location permission
-		userInfo.append(String.format("Location: %s\n\n", user.getLocation().getProperty("name")));
+		userInfo.append(String.format("Location: %s\n\n", user.getLocation() != null ? user.getLocation().getProperty("name") : ""));
 
 		// Example: access via property name (locale)
 		// - no special permissions required
