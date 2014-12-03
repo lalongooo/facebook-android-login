@@ -41,11 +41,10 @@ public class MainFragment extends Fragment {
 		View view = inflater.inflate(R.layout.main, container, false);
 		userInfoTextView = (TextView) view.findViewById(R.id.userInfoTextView);
 
-		LoginButton authButton = (LoginButton) view
-				.findViewById(R.id.authButton);
+		LoginButton authButton = (LoginButton) view.findViewById(R.id.authButton);
 		authButton.setFragment(this);
-		authButton.setReadPermissions(Arrays.asList("email", "user_location",
-				"user_birthday", "user_likes"));
+//		authButton.setReadPermissions(Arrays.asList("email", "user_location", "user_birthday", "user_likes", "user_location"));
+		authButton.setReadPermissions(Arrays.asList("user_location", "user_birthday", "user_likes"));
 		return view;
 	}
 
@@ -119,22 +118,20 @@ public class MainFragment extends Fragment {
 
 		// Example: typed access (name)
 		// - no special permissions required
-		userInfo.append(String.format("Name: %s\n\n", user.getName()));
+		userInfo.append(String.format("Name: %s\n\n", user.getName() != null ? user.getName() : ""));
 
 		// Example: typed access (birthday)
 		// - requires user_birthday permission
-		userInfo.append(String.format("Birthday: %s\n\n", user.getBirthday()));
+		userInfo.append(String.format("Birthday: %s\n\n", user.getBirthday() != null ? user.getBirthday() : ""));
 
 		// Example: partially typed access, to location field,
 		// name key (location)
 		// - requires user_location permission
-		userInfo.append(String.format("Location: %s\n\n", user.getLocation()
-				.getProperty("name")));
+		userInfo.append(String.format("Location: %s\n\n", user.getLocation().getProperty("name")));
 
 		// Example: access via property name (locale)
 		// - no special permissions required
-		userInfo.append(String.format("Locale: %s\n\n",
-				user.getProperty("locale")));
+		userInfo.append(String.format("Locale: %s\n\n", user.getProperty("locale")));
 
 		// Example: access via key for array (languages)
 		// - requires user_likes permission
